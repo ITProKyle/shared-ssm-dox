@@ -15,9 +15,7 @@ jobs:
       - uses: actions/cache@v2
         with:
           key: ${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}
-          path: |
-            /root/.poetry
-            .venv
+          path: .venv
       - name: Install Poetry
         uses: Gr1N/setup-poetry@v4
       - name: Install Dependencies
