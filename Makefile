@@ -30,6 +30,11 @@ lint-black: ## run black
 	@poetry run black . --check
 	@echo ""
 
+lint-cfn:  ## run cfn-lint
+	@echo "Running cfn-lint..."
+	@poetry run cfn-lint
+	@echo ""
+
 lint-flake8: ## run flake8
 	@echo "Running flake8..."
 	@poetry run flake8 --disable-noqa

@@ -1,0 +1,26 @@
+name: cfn-lint
+
+on:
+  pull_request:
+  push:
+
+jobs:
+  cfn-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - uses: actions/cache@v2
+        with:
+          key: ${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}
+          path: |
+            /root/.poetry
+            .venv
+      - name: Install Poetry
+        run: curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
+      - name: Install Dependencies
+        run: poetry install -vv
+      - name: Run cfn-lint
+        run: make lint-cfn
