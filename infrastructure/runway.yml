@@ -1,0 +1,25 @@
+future:
+  strict_environments: true
+
+deployments:
+  - name: Infrastructure
+    modules:
+      - name: root
+        path: ./
+    parameters:
+      bucket_name: ${var bucket_name.${env DEPLOY_ENVIRONMENT}::default=Undefined}
+      namespace: ${var app}-${env DEPLOY_ENVIRONMENT}
+    environments:
+      dev: ${var account_id.dev}/us-east-1
+    regions:
+      - us-east-1
+
+variables:
+  account_id:
+    dev: "433204113401"
+  bucket_name:
+    common:
+      shared-ssm-dox
+    dev:
+      shared-ssm-dox-dev
+  app: shared-ssm-dox

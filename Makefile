@@ -1,6 +1,12 @@
 REPORTS := $(if $(REPORTS),yes,$(if $(CI),yes,no))
 SHELL := /bin/bash
 
+ifeq ($(strip $(shell git branch --show-current)),master)
+	DEPLOY_ENVIRONMENT=common
+else
+	DEPLOY_ENVIRONMENT=dev
+endif
+
 help: ## show this message
 	@IFS=$$'\n' ; \
 	help_lines=(`fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##/:/'`); \
@@ -17,6 +23,16 @@ help: ## show this message
 		printf "%s\n" $$help_info; \
 	done
 
+deploy: ## deploy infrastructure
+	@pushd infrastructure && \
+	runway deploy --deploy-environment ${DEPLOY_ENVIRONMENT} && \
+	popd
+
+destroy: ## destroy infrastructure
+	@pushd infrastructure && \
+	runway destroy --deploy-environment ${DEPLOY_ENVIRONMENT} && \
+	popd
+
 fix-black: ## automatically fix all black errors
 	@poetry run black .
 
@@ -30,6 +46,11 @@ lint-black: ## run black
 	@poetry run black . --check
 	@echo ""
 
+lint-cfn:  ## run cfn-lint
+	@echo "Running cfn-lint..."
+	@poetry run cfn-lint
+	@echo ""
+
 lint-flake8: ## run flake8
 	@echo "Running flake8..."
 	@poetry run flake8 --disable-noqa
@@ -40,10 +61,15 @@ lint-isort: ## run isort
 	@poetry run isort . --check-only
 	@echo ""
 
+plan: ## plan infrastructure changes
+	@pushd infrastructure && \
+	runway plan --deploy-environment ${DEPLOY_ENVIRONMENT} && \
+	popd
+
 run-pre-commit:
 	@poetry run pre-commit run -a
 
-setup: setup-poetry setup-precommit  ## setup development environment
+setup: setup-poetry setup-pre-commit  ## setup development environment
 
 setup-poetry:  ## setup poetry environment
 	@poetry install

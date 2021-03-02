@@ -1,6 +1,7 @@
 {
     "recommendations": [
         "bungcip.better-toml",
+        "kddejong.vscode-cfn-lint",
         "DavidAnson.vscode-markdownlint",
         "editorconfig.editorconfig",
         "ms-python.python",

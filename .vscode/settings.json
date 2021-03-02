@@ -11,6 +11,10 @@
         "editor.tabSize": 4
     },
     "cSpell.words": [],
+    "cfnLint.path": ".venv/bin/cfn-lint",
+    "files.associations": {
+        ".cfnlintrc": "yaml"
+    },
     "files.insertFinalNewline": true,
     "python.analysis.typeCheckingMode": "strict",
     "python.formatting.provider": "black",
