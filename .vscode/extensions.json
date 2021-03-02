@@ -1,0 +1,10 @@
+{
+    "recommendations": [
+        "bungcip.better-toml",
+        "DavidAnson.vscode-markdownlint",
+        "editorconfig.editorconfig",
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "streetsidesoftware.code-spell-checker"
+    ]
+}

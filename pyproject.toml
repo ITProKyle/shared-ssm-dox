@@ -1,0 +1,58 @@
+[tool.poetry]
+name = "shared-ssm-dox"
+version = "0.0.0"
+description = "A repository of shared SSM documents"
+authors = ["Kyle Finley <kyle@finley.sh>"]
+license = "Apache-2.0"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+[tool.poetry.dev-dependencies]
+black = "^20.8b1"
+flake8 = "^3.8.4"
+flake8-docstrings = "^1.5.0"
+isort = "^5.7.0"
+pep8-naming = "^0.11.1"
+pre-commit = "^2.10.1"
+pydocstyle = "^5.1.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.black]
+exclude = '''
+/(
+    _build
+  | \.eggs
+  | \.git
+  | \.mypy_cache
+  | \.runway_cache
+  | \.runway
+  | \.venv
+  | build
+  | dist
+  | node_modules
+)/
+'''
+include = '\.pyi?$'
+line-length = 88
+target-version = ['py38']
+
+
+[tool.isort]
+profile = "black"
+skip = [
+    "_build",
+    ".eggs",
+    ".git",
+    ".mypy_cache",
+    ".runway_cache",
+    ".runway",
+    ".venv",
+    "build",
+    "dist",
+    "node_modules",
+]
