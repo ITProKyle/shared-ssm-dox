@@ -32,3 +32,14 @@ repos:
     rev: v0.26.0
     hooks:
       - id: markdownlint
+  - repo: local
+    hooks:
+      - id: ssm-dox-check
+        name: ssm-dox-check
+        entry: .venv/bin/ssm-dox check
+        language: python
+        pass_filenames: false
+        types:
+          - text
+        exclude_types:
+          - markdown
