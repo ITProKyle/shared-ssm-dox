@@ -1,0 +1,25 @@
+{
+    "exclude": [
+        "**/__pycache__",
+        "**/.git",
+        "**./runway",
+        "**/.venv",
+        "**/node_modules",
+        "**/typings"
+    ],
+    "pythonVersion": "3.8",
+    "reportDuplicateImport": "none",
+    "reportImportCycles": "none",
+    "reportMissingTypeStubs": "information",
+    "reportPrivateUsage": "none",
+    "reportUnknownMemberType": "none",
+    "reportUnknownVariableType": "none",
+    "reportUntypedClassDecorator": "none",
+    "reportUntypedFunctionDecorator": "none",
+    "reportUnusedImport": "none",
+    "reportUnusedVariable": "none",
+    "reportWildcardImportFromLibrary": "none",
+    "typeCheckingMode": "strict",
+    "useLibraryCodeForTypes": true,
+    "venv": ".venv"
+}
