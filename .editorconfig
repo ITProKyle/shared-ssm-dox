@@ -9,10 +9,10 @@ trim_trailing_whitespace = true
 [*.json]
 indent_size = 4
 
-[*.{html,md,rst,xml,yml,yaml}}]
+[*.{html,md,rst,sh,xml,yml,yaml}}]
 indent_size = 2
 
-[*.py]
+[*.{ps1,psd1,py}]
 charset = utf-8
 indent_size = 4
 

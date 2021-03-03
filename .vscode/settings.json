@@ -1,4 +1,7 @@
 {
+    "[powershell]": {
+        "editor.formatOnSave": true
+    },
     "[python]": {
         "editor.detectIndentation": false,
         "editor.formatOnSave": true,
@@ -36,6 +39,10 @@
         ".cfnlintrc": "yaml"
     },
     "files.insertFinalNewline": true,
+    "powershell.codeFormatting.alignPropertyValuePairs": false,
+    "powershell.codeFormatting.autoCorrectAliases": true,
+    "powershell.codeFormatting.useCorrectCasing": true,
+    "powershell.codeFormatting.whitespaceInsideBrace": false,
     "python.analysis.typeCheckingMode": "strict",
     "python.formatting.provider": "black",
     "python.linting.flake8Args": [

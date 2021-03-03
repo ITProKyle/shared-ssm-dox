@@ -4,6 +4,12 @@ on:
   push:
 
 jobs:
+  lint-powershell:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run PowerShell Linters
+        run: make lint-powershell
   lint-python:
     runs-on: ubuntu-latest
     steps:

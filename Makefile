@@ -67,6 +67,16 @@ lint-isort: ## run isort
 	@poetry run isort . --check-only
 	@echo ""
 
+# This command requires PowerShell and the PSScriptAnalyzer PowerShell module.
+# If Invoke-ScriptAnalyzer is not found, PSScriptAnalyzer needs to be installed.
+#   pwsh Install-Module PSScriptAnalyzer
+#
+# https://github.com/PowerShell/PSScriptAnalyzer
+lint-powershell: ## run PowerShell PSScriptAnalyzer
+	@echo "Running PSScriptAnalyzer..."
+	@pwsh -Command "& {Invoke-ScriptAnalyzer -Path ./dox/ -Recurse -Settings ./ScriptAnalyzerSettings.psd1}"
+	@echo ""
+
 lint-pylint: ## run pylint
 	@echo "Running pylint..."
 	@poetry run pylint --rcfile=pyproject.toml ssm_dox_builder --reports=${REPORTS}
@@ -77,13 +87,13 @@ lint-pyright: ## run pyright
 	@npx pyright --venv-path ./
 	@echo ""
 
+# If shellcheck is not found, it needs to be installed.
+#   Debian: apt install shellcheck
+#   EPEL: yum -y install epel-release && yum install ShellCheck
+#   macOs: brew install shellcheck
+#
 lint-shell: ## lint shell scripts using shellcheck
-	@echo "If shellcheck is not found, it needs to be installed."
-	@echo ""
-	@echo "  Debian: apt install shellcheck"
-	@echo "  EPEL: yum -y install epel-release && yum install ShellCheck"
-	@echo "  macOs: brew install shellcheck"
-	@echo ""
+	@echo "Running shellcheck..."
 	@find . -name "*.sh" -not -path "./.venv/*" | xargs shellcheck
 	@echo ""
 
