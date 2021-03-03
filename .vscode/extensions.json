@@ -1,11 +1,12 @@
 {
     "recommendations": [
         "bungcip.better-toml",
-        "kddejong.vscode-cfn-lint",
         "DavidAnson.vscode-markdownlint",
         "editorconfig.editorconfig",
+        "kddejong.vscode-cfn-lint",
         "ms-python.python",
         "ms-python.vscode-pylance",
-        "streetsidesoftware.code-spell-checker"
+        "streetsidesoftware.code-spell-checker",
+        "timonwong.shellcheck"
     ]
 }

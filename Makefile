@@ -45,7 +45,7 @@ fix-black: ## automatically fix all black errors
 fix-isort: ## automatically fix all isort errors
 	@poetry run isort .
 
-lint: lint-isort lint-black lint-flake8  ## run all linters
+lint: lint-isort lint-black lint-flake8 lint-pylint  ## run all linters
 
 lint-black: ## run black
 	@echo "Running black... If this fails, run 'make fix-black' to resolve."
@@ -65,6 +65,11 @@ lint-flake8: ## run flake8
 lint-isort: ## run isort
 	@echo "Running isort... If this fails, run 'make fix-isort' to resolve."
 	@poetry run isort . --check-only
+	@echo ""
+
+lint-pylint: ## run pylint
+	@echo "Running pylint..."
+	@poetry run pylint --rcfile=pyproject.toml ssm_dox_builder --reports=${REPORTS}
 	@echo ""
 
 lint-shell: ## lint shell scripts using shellcheck
