@@ -67,6 +67,16 @@ lint-isort: ## run isort
 	@poetry run isort . --check-only
 	@echo ""
 
+lint-shell: ## lint shell scripts using shellcheck
+	@echo "If shellcheck is not found, it needs to be installed."
+	@echo ""
+	@echo "  Debian: apt install shellcheck"
+	@echo "  EPEL: yum -y install epel-release && yum install ShellCheck"
+	@echo "  macOs: brew install shellcheck"
+	@echo ""
+	@find . -name "*.sh" -not -path "./.venv/*" | xargs shellcheck
+	@echo ""
+
 plan: ## plan infrastructure changes
 	@pushd infrastructure && \
 	runway plan --deploy-environment ${DEPLOY_ENVIRONMENT} && \
