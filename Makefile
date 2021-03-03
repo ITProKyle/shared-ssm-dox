@@ -33,13 +33,19 @@ destroy: ## destroy infrastructure
 	runway destroy --deploy-environment ${DEPLOY_ENVIRONMENT} && \
 	popd
 
+dox-build: ## build SSM Documents
+	@poetry run ssm-dox build
+
+dox-check: ## check SSM Documents for drift
+	@poetry run ssm-dox check
+
 fix-black: ## automatically fix all black errors
 	@poetry run black .
 
 fix-isort: ## automatically fix all isort errors
 	@poetry run isort .
 
-lint: lint-isort lint-black lint-flake8  ## run all linters
+lint: lint-isort lint-black lint-flake8 lint-pyright lint-pylint  ## run all linters
 
 lint-black: ## run black
 	@echo "Running black... If this fails, run 'make fix-black' to resolve."
@@ -59,6 +65,36 @@ lint-flake8: ## run flake8
 lint-isort: ## run isort
 	@echo "Running isort... If this fails, run 'make fix-isort' to resolve."
 	@poetry run isort . --check-only
+	@echo ""
+
+# This command requires PowerShell and the PSScriptAnalyzer PowerShell module.
+# If Invoke-ScriptAnalyzer is not found, PSScriptAnalyzer needs to be installed.
+#   pwsh Install-Module PSScriptAnalyzer
+#
+# https://github.com/PowerShell/PSScriptAnalyzer
+lint-powershell: ## run PowerShell PSScriptAnalyzer
+	@echo "Running PSScriptAnalyzer..."
+	@pwsh -Command "& {Invoke-ScriptAnalyzer -Path ./dox/ -Recurse -Settings ./ScriptAnalyzerSettings.psd1}"
+	@echo ""
+
+lint-pylint: ## run pylint
+	@echo "Running pylint..."
+	@poetry run pylint --rcfile=pyproject.toml ssm_dox_builder --reports=${REPORTS}
+	@echo ""
+
+lint-pyright: ## run pyright
+	@echo "Running pyright..."
+	@npx pyright --venv-path ./
+	@echo ""
+
+# If shellcheck is not found, it needs to be installed.
+#   Debian: apt install shellcheck
+#   EPEL: yum -y install epel-release && yum install ShellCheck
+#   macOs: brew install shellcheck
+#
+lint-shell: ## lint shell scripts using shellcheck
+	@echo "Running shellcheck..."
+	@find . -name "*.sh" -not -path "./.venv/*" | xargs shellcheck
 	@echo ""
 
 plan: ## plan infrastructure changes

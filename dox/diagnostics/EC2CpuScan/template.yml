@@ -1,0 +1,27 @@
+schemaVersion: "2.2"
+description: Reports back diagnostic information related to cpu usage.
+
+parameters:
+  ResultCount:
+    type: String
+    description: The number of results to return for top processes.
+    default: 5
+    allowedPattern: "^[0-9]{1,2}$"
+
+mainSteps:
+  - action: aws:runShellScript
+    name: LinuxCpuScan
+    precondition:
+      StringEquals:
+        - platformType
+        - Linux
+    inputs:
+      runCommand: !IncludeScript ./cpu_scan.sh
+  - action: aws:runPowerShellScript
+    name: WindowsCpuScan
+    precondition:
+      StringEquals:
+        - platformType
+        - Windows
+    inputs:
+      runCommand: !IncludeScript ./cpu_scan.ps1
