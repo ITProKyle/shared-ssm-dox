@@ -52,4 +52,4 @@ echo
 
 # Output last {{ResultCount}} SAR entries
 echo
-  which sar >/dev/null 2>/dev/null && sar_output || echo 'no sysstat available'
+  command -v sar >/dev/null 2>/dev/null && sar_output || echo 'no sysstat available'
