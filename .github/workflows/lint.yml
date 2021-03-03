@@ -25,9 +25,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Install Dependencies
-        run: |
-          apt update -y
-          apt install shellcheck -y
       - name: Run Shell Linters
         run: make lint-shell
