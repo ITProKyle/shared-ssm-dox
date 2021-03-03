@@ -33,6 +33,12 @@ destroy: ## destroy infrastructure
 	runway destroy --deploy-environment ${DEPLOY_ENVIRONMENT} && \
 	popd
 
+dox-build: ## build SSM Documents
+	@poetry run ssm-dox build
+
+dox-check: ## check SSM Documents for drift
+	@poetry run ssm-dox check
+
 fix-black: ## automatically fix all black errors
 	@poetry run black .
 
