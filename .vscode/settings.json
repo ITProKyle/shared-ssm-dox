@@ -10,7 +10,27 @@
         ],
         "editor.tabSize": 4
     },
-    "cSpell.words": [],
+    "cSpell.enableFiletypes": [
+        "powershell",
+        "shellscript"
+    ],
+    "cSpell.words": [
+        "COMPUTERNAME",
+        "appcmd",
+        "autosize",
+        "cpuinfo",
+        "faws",
+        "gsub",
+        "gwmi",
+        "inetsrv",
+        "instancetype",
+        "ipaddress",
+        "printf",
+        "shellcheck",
+        "smarttickets",
+        "sysstat",
+        "trimend"
+    ],
     "cfnLint.path": ".venv/bin/cfn-lint",
     "files.associations": {
         ".cfnlintrc": "yaml"
