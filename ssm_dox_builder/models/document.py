@@ -10,7 +10,7 @@ from .main_steps import AnyMainStep
 from .parameter import SsmDocumentParameterDataModel
 
 
-class SsmDocument(BaseModel):
+class SsmDocumentDataModel(BaseModel):
     """AWS SSM Document data model."""
 
     schemaVersion: str

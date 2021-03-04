@@ -59,7 +59,7 @@ lint-cfn:  ## run cfn-lint
 
 lint-flake8: ## run flake8
 	@echo "Running flake8..."
-	@poetry run flake8 --disable-noqa
+	@poetry run flake8
 	@echo ""
 
 lint-isort: ## run isort

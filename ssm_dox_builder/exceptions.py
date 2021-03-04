@@ -6,7 +6,22 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from pathlib import Path
 
-    from .models.document import SsmDocument
+    from .models.document import SsmDocumentDataModel
+
+
+class DocumentDoesNotExist(Exception):
+    """The document trying to be used does not exist."""
+
+    def __init__(self, path: Path) -> None:
+        """Instantiate class.
+
+        Args:
+            path: Path that should be a Document but is not.
+
+        """
+        self.message = f"Document at path {path} does not exist"
+        self.path = path
+        super().__init__(self.message)
 
 
 class DocumentDrift(Exception):
@@ -15,9 +30,9 @@ class DocumentDrift(Exception):
     def __init__(
         self,
         *,
-        document_content: SsmDocument,
+        document_content: SsmDocumentDataModel,
         document_path: Path,
-        dox_content: SsmDocument,
+        dox_content: SsmDocumentDataModel,
         dox_path: Path,
     ) -> None:
         """Instantiate class.

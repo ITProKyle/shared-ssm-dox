@@ -29,6 +29,7 @@
         "instancetype",
         "ipaddress",
         "printf",
+        "rglob",
         "shellcheck",
         "smarttickets",
         "sysstat",
