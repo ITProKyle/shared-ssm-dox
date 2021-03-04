@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "shared-ssm-dox"
-version = "0.1.0"
+version = "0.2.0"
 description = "A repository of shared SSM documents"
 authors = ["Kyle Finley <kyle@finley.sh>"]
 license = "Apache-2.0"
