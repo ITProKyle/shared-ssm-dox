@@ -16,8 +16,9 @@ categories:
   - title: '🧰 Maintenance'
     label: 'maintenance'
 exclude-labels:
-  - 'skip-changelog'
   - 'documentation'
+  - 'release'
+  - 'skip-changelog'
 change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
 template: |
   ## Changes
