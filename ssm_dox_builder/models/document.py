@@ -1,7 +1,7 @@
 """AWS SSM Document data model."""
 from __future__ import annotations
 
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 from pydantic import validator
 
@@ -15,7 +15,7 @@ class SsmDocumentDataModel(BaseModel):
 
     schemaVersion: str
     description: str
-    parameters: Dict[str, SsmDocumentParameterDataModel]
+    parameters: Optional[Dict[str, SsmDocumentParameterDataModel]] = None
     mainSteps: List[AnyMainStep]
 
     @validator("schemaVersion")
