@@ -37,8 +37,20 @@ class DoxLoader(yaml.SafeLoader):
         with open(script, "r") as f:
             return [line.rstrip() for line in f.readlines()]
 
+    # pylint: disable=no-self-use,unused-argument
+    def construct_linux_only(self, node: yaml.Node) -> Any:
+        """Handle !LinuxOnly."""
+        return {"StringEquals": ["platformType", "Linux"]}
+
+    # pylint: disable=no-self-use,unused-argument
+    def construct_windows_only(self, node: yaml.Node) -> Any:
+        """Handle !WindowsOnly."""
+        return {"StringEquals": ["platformType", "Windows"]}
+
 
 DoxLoader.add_constructor("!IncludeScript", DoxLoader.construct_include_script)  # type: ignore
+DoxLoader.add_constructor("!LinuxOnly", DoxLoader.construct_linux_only)  # type: ignore
+DoxLoader.add_constructor("!WindowsOnly", DoxLoader.construct_windows_only)  # type: ignore
 
 
 class Dox(NestedFileMixin):

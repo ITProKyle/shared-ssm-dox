@@ -10,9 +10,6 @@ parameters:
 mainSteps:
   - action: aws:runShellScript
     name: LinuxInstall
-    precondition:
-      StringEquals:
-        - platformType
-        - Linux
+    precondition: !LinuxOnly
     inputs:
       runCommand: !IncludeScript ./install_packages.sh

@@ -11,17 +11,11 @@ parameters:
 mainSteps:
   - action: aws:runShellScript
     name: LinuxCpuScan
-    precondition:
-      StringEquals:
-        - platformType
-        - Linux
+    precondition: !LinuxOnly
     inputs:
       runCommand: !IncludeScript ./cpu_scan.sh
   - action: aws:runPowerShellScript
     name: WindowsCpuScan
-    precondition:
-      StringEquals:
-        - platformType
-        - Windows
+    precondition: !WindowsOnly
     inputs:
       runCommand: !IncludeScript ./cpu_scan.ps1

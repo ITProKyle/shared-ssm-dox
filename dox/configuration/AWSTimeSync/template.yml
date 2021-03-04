@@ -18,18 +18,12 @@ parameters:
 mainSteps:
   - action: aws:runShellScript
     name: LinuxInstall
-    precondition:
-      StringEquals:
-        - platformType
-        - Linux
+    precondition: !LinuxOnly
     inputs:
       runCommand: !IncludeScript install.sh
   - action: aws:runPowerShellScript
     name: WindowsInstall
-    precondition:
-      StringEquals:
-        - platformType
-        - Windows
+    precondition: !WindowsOnly
     inputs:
       runCommand: !IncludeScript install.ps1
       timeoutSeconds: 7200
