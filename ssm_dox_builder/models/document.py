@@ -13,7 +13,7 @@ from .parameter import SsmDocumentParameterDataModel
 class SsmDocumentDataModel(BaseModel):
     """AWS SSM Document data model."""
 
-    schemaVersion: str
+    schemaVersion: str = "2.2"
     description: str
     parameters: Optional[Dict[str, SsmDocumentParameterDataModel]] = None
     mainSteps: List[AnyMainStep]
