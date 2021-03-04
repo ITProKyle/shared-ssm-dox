@@ -1,0 +1,90 @@
+{
+    "schemaVersion": "2.2",
+    "description": "Install a list of packages on an OS.",
+    "parameters": {
+        "Packages": {
+            "default": {},
+            "description": "Space separated list of packages to be installed/",
+            "type": "String"
+        }
+    },
+    "mainSteps": [
+        {
+            "action": "aws:runShellScript",
+            "inputs": {
+                "runCommand": [
+                    "#!/bin/bash",
+                    "set -e",
+                    "",
+                    "packages=\"{{Packages}}\"",
+                    "",
+                    "# Available on all support platforms except RHEL/CENTOS 6",
+                    "if [[ -f /etc/os-release ]]; then",
+                    "  # As per docs values in os-release are considered env",
+                    "  # variable compatible so this works",
+                    "  # shellcheck disable=SC1091",
+                    "  source /etc/os-release",
+                    "  DISTRO=\"${ID}\"",
+                    "elif [[ -f /etc/redhat-release ]]; then",
+                    "  # This is what you'll hit for RHEL/CENTOS 6",
+                    "  if grep -q -s \"CentOS\" /etc/redhat-release; then",
+                    "    DISTRO=\"centos\"",
+                    "  else",
+                    "    DISTRO=\"rhel\"",
+                    "  fi",
+                    "else",
+                    "  echo \"Unknown Distro!\"",
+                    "  exit 1",
+                    "fi",
+                    "",
+                    "case ${DISTRO} in",
+                    "  centos|rhel|amzn)",
+                    "    PACKAGE_MANAGER=\"yum\"",
+                    "    ;;",
+                    "  ubuntu)",
+                    "    PACKAGE_MANAGER=\"apt-get\"",
+                    "    ;;",
+                    "esac",
+                    "",
+                    "case ${PACKAGE_MANAGER} in",
+                    "  yum)",
+                    "    for package in ${packages}; do",
+                    "        # Work around query commands returning non-zero return codes",
+                    "        # with set -e protection",
+                    "        set +e",
+                    "        rpm -q  ${package} > /dev/null 2>&1",
+                    "        COMMAND_RC=$?",
+                    "        set -e",
+                    "        if [[ ${COMMAND_RC} -ne 0 ]]; then",
+                    "            yum install -y -q ${package}",
+                    "        fi",
+                    "    done",
+                    "    ;;",
+                    "  apt-get)",
+                    "    # This prevents debconf from going non-interactive during installs",
+                    "    export DEBIAN_FRONTEND=noninteractive",
+                    "    for package in ${packages}; do",
+                    "        # Work around query commands returning non-zero return codes",
+                    "        # with set -e protection",
+                    "        set +e",
+                    "        dpkg -s ${package} > /dev/null 2>&1",
+                    "        COMMAND_RC=$?",
+                    "        set -e",
+                    "        if [[ ${COMMAND_RC} -ne 0 ]]; then",
+                    "            flock --timeout 60 --exclusive --close /var/lib/dpkg/lock apt-get -yq install ${package}",
+                    "        fi",
+                    "    done",
+                    "    ;;",
+                    "esac"
+                ]
+            },
+            "name": "LinuxInstall",
+            "precondition": {
+                "StringEquals": [
+                    "platformType",
+                    "Linux"
+                ]
+            }
+        }
+    ]
+}

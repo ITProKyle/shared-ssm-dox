@@ -34,6 +34,7 @@
         "chronyc",
         "chronyd",
         "cpuinfo",
+        "debconf",
         "dpkg",
         "faws",
         "gsub",

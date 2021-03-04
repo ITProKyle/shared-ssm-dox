@@ -1,0 +1,18 @@
+schemaVersion: 2.2
+description: Install a list of packages on an OS.
+
+parameters:
+  Packages:
+    type: String
+    description: Space separated list of packages to be installed/
+    default: ""
+
+mainSteps:
+  - action: aws:runShellScript
+    name: LinuxInstall
+    precondition:
+      StringEquals:
+        - platformType
+        - Linux
+    inputs:
+      runCommand: !IncludeScript ./install_packages.sh
