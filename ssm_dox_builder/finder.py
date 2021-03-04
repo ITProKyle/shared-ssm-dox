@@ -1,4 +1,4 @@
-"""Explore a directory to find Dox to build."""
+"""Explore a directory."""
 from __future__ import annotations
 
 import logging
@@ -7,13 +7,14 @@ from functools import cached_property
 from pathlib import Path
 from typing import List
 
+from .document import Document
 from .dox import Dox
 
 LOGGER = logging.getLogger(__name__)
 
 
 class Finder:
-    """Explore a directory to find Dox to build."""
+    """Explore a directory."""
 
     def __init__(self, root_dir: Path) -> None:
         """Instantiate class.
@@ -23,6 +24,15 @@ class Finder:
 
         """
         self.root = root_dir
+
+    @cached_property
+    def documents(self) -> List[Document]:
+        """List of documents found in the root directory."""
+        result = [
+            Document(path=f, root_dir=self.root) for f in self.root.rglob("*.json")
+        ]
+        LOGGER.info("found %s document(s)", len(result))
+        return result
 
     @cached_property
     def dox(self) -> List[Dox]:
