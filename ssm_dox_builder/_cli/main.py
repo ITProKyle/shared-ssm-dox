@@ -5,6 +5,7 @@ from typing import Any, Dict
 
 import click
 
+from .. import __version__
 from . import commands
 from .logs import setup_logging
 
@@ -15,6 +16,7 @@ CLICK_CONTEXT_SETTINGS: Dict[str, Any] = {
 
 
 @click.group(context_settings=CLICK_CONTEXT_SETTINGS)
+@click.version_option(__version__, message="%(version)s")
 def cli() -> None:
     """SSM Document Builder CLI."""
     setup_logging()
