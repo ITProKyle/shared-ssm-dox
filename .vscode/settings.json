@@ -25,6 +25,7 @@
     "cSpell.words": [
         "COMPUTERNAME",
         "HKLM",
+        "LASTEXITCODE",
         "USERDNSDOMAIN",
         "appcmd",
         "autosize",
@@ -33,6 +34,7 @@
         "chrony",
         "chronyc",
         "chronyd",
+        "codedeployagent",
         "cpuinfo",
         "debconf",
         "dpkg",

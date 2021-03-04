@@ -1,0 +1,20 @@
+schemaVersion: 2.2
+description: Install Code Deploy agent on supported OSes.
+
+mainSteps:
+  - action: aws:runShellScript
+    name: LinuxInstall
+    precondition:
+      StringEquals:
+        - platformType
+        - Linux
+    inputs:
+      runCommand: !IncludeScript ./install.sh
+  - action: aws:runPowerShellScript
+    name: WindowsInstall
+    precondition:
+      StringEquals:
+        - platformType
+        - Windows
+    inputs:
+      runCommand: !IncludeScript ./install.ps1
