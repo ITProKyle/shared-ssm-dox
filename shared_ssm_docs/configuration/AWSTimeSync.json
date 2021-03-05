@@ -9,7 +9,7 @@
             "type": "String"
         },
         "WindowsConfigureIfDomainMember": {
-            "default": false,
+            "default": "False",
             "description": "(Windows only) Configure even if Windows instance is joined to a domain? (True|False)",
             "type": "String"
         }
