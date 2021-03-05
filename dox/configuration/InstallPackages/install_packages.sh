@@ -56,7 +56,7 @@ case ${PACKAGE_MANAGER} in
         COMMAND_RC=$?
         set -e
         if [[ ${COMMAND_RC} -ne 0 ]]; then
-            flock --timeout 60 --exclusive --close /var/lib/dpkg/lock apt-get -yq install ${package}
+          flock --timeout 60 --exclusive --close /var/lib/dpkg/lock apt-get -yq install ${package}
         fi
     done
     ;;
