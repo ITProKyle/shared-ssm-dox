@@ -4,7 +4,7 @@
     "parameters": {
         "ResultCount": {
             "allowedPattern": "^[0-9]{1,2}$",
-            "default": 5,
+            "default": "5",
             "description": "The number of results to return for top processes.",
             "type": "String"
         }

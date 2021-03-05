@@ -3,7 +3,7 @@
     "description": "Install a list of packages on an OS.",
     "parameters": {
         "Packages": {
-            "default": {},
+            "default": "",
             "description": "Space separated list of packages to be installed/",
             "type": "String"
         }

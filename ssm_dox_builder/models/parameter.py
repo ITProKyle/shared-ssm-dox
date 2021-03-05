@@ -13,13 +13,13 @@ class SsmDocumentParameterDataModel(BaseModel):
     allowedValues: Optional[List[str]] = None
     default: Optional[
         Union[
+            str,
             bool,
             Dict[str, str],
             Dict[str, List[str]],
             int,
             List[Dict[str, str]],
             List[str],
-            str,
         ]
     ] = None
     description: Optional[str] = None
