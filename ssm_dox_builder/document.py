@@ -82,7 +82,7 @@ class Document(NestedFileMixin):
             prefix: A prefix to append to the S3 Object key.
 
         """
-        key = f"{self.relative_path.lstrip('./')}/{self.name}"
+        key = f"{self.relative_path.lstrip('./')}/{self.name}".lstrip("/")
         if prefix:
             key = f"{prefix.rstrip('/')}/{key}"
         client.put_object(
@@ -103,5 +103,5 @@ class Document(NestedFileMixin):
         """
         if content:
             self.content = content
-        self.path.write_text(self.json())
+        self.path.write_text(self.json() + "\n")  # insert new line at the end
         LOGGER.success("wrote to %s", self.path)

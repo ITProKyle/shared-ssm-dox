@@ -55,6 +55,12 @@ def aws_credentials() -> Iterator[None]:
 
 
 @pytest.fixture(scope="package")
+def documents_dir(fixture_dir: Path) -> Path:
+    """Path to the documents directory inside of fixtures."""
+    return fixture_dir / "documents"
+
+
+@pytest.fixture(scope="package")
 def fixture_dir(unit_test_dir: Path) -> Path:
     """Path to the fixture directory."""
     return unit_test_dir / "fixtures"
