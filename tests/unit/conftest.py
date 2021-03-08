@@ -61,6 +61,12 @@ def documents_dir(fixture_dir: Path) -> Path:
 
 
 @pytest.fixture(scope="package")
+def dox_dir(fixture_dir: Path) -> Path:
+    """Path to the dox directory inside of fixtures."""
+    return fixture_dir / "dox"
+
+
+@pytest.fixture(scope="package")
 def fixture_dir(unit_test_dir: Path) -> Path:
     """Path to the fixture directory."""
     return unit_test_dir / "fixtures"

@@ -94,7 +94,7 @@ class Document(NestedFileMixin):
         )
         LOGGER.success("published %s to s3://%s/%s", self.name, bucket, key)
 
-    def write(self, content: Optional[SsmDocumentDataModel] = None) -> None:
+    def write(self, content: Optional[SsmDocumentDataModel] = None) -> Path:
         """Write contents to disk.
 
         Args:
@@ -105,3 +105,4 @@ class Document(NestedFileMixin):
             self.content = content
         self.path.write_text(self.json() + "\n")  # insert new line at the end
         LOGGER.success("wrote to %s", self.path)
+        return self.path

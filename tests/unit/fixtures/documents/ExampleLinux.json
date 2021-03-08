@@ -12,6 +12,7 @@
             "action": "aws:runShellScript",
             "inputs": {
                 "runCommand": [
+                    "#!/bin/bash -e",
                     "NAME=\"{{ Name }}\"",
                     "echo \"Greetings ${NAME}\""
                 ]

@@ -1,0 +1,13 @@
+description: Example document.
+
+parameters:
+    Name:
+      type: String
+      default: user
+
+mainSteps:
+  - action: aws:runPowerShellScript
+    inputs:
+      runCommand: !IncludeScript ./script.ps1
+    name: WindowsGreetings
+    precondition: !WindowsOnly

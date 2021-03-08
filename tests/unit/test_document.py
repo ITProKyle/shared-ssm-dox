@@ -131,7 +131,7 @@ class TestDocument:
         mock_path = MagicMock(autospec=Path)
         mock_path.write_text = MagicMock()
         obj = Document(path=mock_path, root_dir=documents_dir)
-        assert not obj.write()
+        assert obj.write() == mock_path
         mock_path.write_text.assert_called_once_with(obj.json() + "\n")
 
     def test_write_provided(self, documents_dir: Path, mocker: MockerFixture) -> None:
@@ -149,6 +149,6 @@ class TestDocument:
         mock_path = MagicMock(autospec=Path)
         mock_path.write_text = MagicMock()
         obj = Document(path=mock_path, root_dir=documents_dir)
-        assert not obj.write(new_content)
+        assert obj.write(new_content) == mock_path
         assert obj.content == new_content
         mock_path.write_text.assert_called_once_with(obj.json() + "\n")

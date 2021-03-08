@@ -16,7 +16,7 @@
                     "Write-Output $Name"
                 ]
             },
-            "name": "LinuxGreetings",
+            "name": "WindowsGreetings",
             "precondition": {
                 "StringEquals": [
                     "platformType",
