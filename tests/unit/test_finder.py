@@ -85,7 +85,7 @@ class TestFinder:
         ]
         for d in expected:
             d.mkdir(exist_ok=True, parents=True)
-        assert Finder.scandir(tmp_path) == expected
+        assert Finder.scandir(tmp_path).sort() == expected.sort()
 
     def test_subdirectories(self, mocker: MockerFixture, tmp_path: Path) -> None:
         """Test subdirectories."""
