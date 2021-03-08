@@ -24,4 +24,6 @@ class NestedFileMixin:
         the original root directory.
 
         """
+        if self.path == self.root:
+            return "./"
         return "./" + str(self.path.parent).replace(str(self.root), "").lstrip(os.sep)

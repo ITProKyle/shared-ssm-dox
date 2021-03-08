@@ -13,7 +13,7 @@ from .base import SsmDocumentMainStep, SsmDocumentMainStepInputs
 class AwsRunPowerShellScriptInputs(SsmDocumentMainStepInputs):
     """AWS SSM Document mainStep aws:runPowerShellScript inputs data model."""
 
-    runCommand: List[str]
+    runCommand: List[str] = []
     timeoutSeconds: Optional[str] = None
     workingDirectory: Optional[str] = None
 
@@ -26,4 +26,4 @@ class AwsRunPowerShellScript(SsmDocumentMainStep):
     """
 
     action: Literal["aws:runPowerShellScript"]
-    inputs: AwsRunPowerShellScriptInputs
+    inputs: AwsRunPowerShellScriptInputs = AwsRunPowerShellScriptInputs()

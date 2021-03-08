@@ -1,0 +1,28 @@
+{
+    "schemaVersion": "2.2",
+    "description": "Example document.",
+    "parameters": {
+        "Name": {
+            "default": "user",
+            "type": "String"
+        }
+    },
+    "mainSteps": [
+        {
+            "action": "aws:runPowerShellScript",
+            "inputs": {
+                "runCommand": [
+                    "$Name = {{Name}}",
+                    "Write-Output $Name"
+                ]
+            },
+            "name": "WindowsGreetings",
+            "precondition": {
+                "StringEquals": [
+                    "platformType",
+                    "Windows"
+                ]
+            }
+        }
+    ]
+}

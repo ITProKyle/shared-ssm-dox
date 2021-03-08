@@ -88,18 +88,19 @@ class Dox(NestedFileMixin):
                 return tmp_file
         raise TemplateNotFound(self.path)
 
-    def build(self, output_path: Path) -> None:
+    def build(self, output_path: Path) -> Path:
         """Build Dox.
 
         Args:
             output_path: Path where built document will the saved.
 
         """
-        document_path = self.get_built_document_path(output_path)
-        document_path.parent.mkdir(exist_ok=True, parents=True)
+        document = self.get_document(output_path)
+        document.path.parent.mkdir(exist_ok=True, parents=True)
         LOGGER.warning("building %s...", self.name)
-        document_path.write_text(self.json() + "\n")
-        LOGGER.success("output %s to %s", self.name, document_path)
+        document.write(content=self.content)
+        LOGGER.success("output %s to %s", self.name, document.path)
+        return document.path
 
     def check(self, output_path: Path) -> None:
         """Check Dox against corresponding built document in output path.
@@ -108,16 +109,15 @@ class Dox(NestedFileMixin):
             output_path: Path where built documents are stored.
 
         """
-        document = self.get_built_document(output_path)
-        document_path = self.get_built_document_path(output_path)
+        document = self.get_document(output_path)
         if self.content != document.content:
             raise DocumentDrift(
                 document_content=document.content,
-                document_path=self.get_built_document_path(output_path),
+                document_path=document.path,
                 dox_content=self.content,
                 dox_path=self.template.parent,
             )
-        LOGGER.success("%s is up to date", document_path)
+        LOGGER.success("%s is up to date", document.path)
 
     def diff(self, output_path: Path) -> None:
         """Diff Dox and corresponding built document in output path.
@@ -127,25 +127,20 @@ class Dox(NestedFileMixin):
 
         """
         dox_content = self.json().split("\n")
-        doc_content = self.get_built_document(output_path).json().split("\n")
+        doc_content = self.get_document(output_path).json().split("\n")
         differ = difflib.Differ()
         print("\n".join(differ.compare(doc_content, dox_content)))
 
-    def get_built_document(self, output_path: Path) -> Document:
+    def get_document(self, output_path: Path) -> Document:
         """Get the built document that corresponds with this Dox in output path.
 
         Args:
             output_path: Path where built documents are stored.
 
         """
-        # return SsmDocumentDataModel.parse_raw(
-        #     self.get_built_document_path(output_path).read_bytes()
-        # )
-        return Document(
-            path=self.get_built_document_path(output_path), root_dir=output_path
-        )
+        return Document(path=self.get_document_path(output_path), root_dir=output_path)
 
-    def get_built_document_path(self, output_path: Path) -> Path:
+    def get_document_path(self, output_path: Path) -> Path:
         """Get the path to the built document that corresponds with this Dox.
 
         Args:

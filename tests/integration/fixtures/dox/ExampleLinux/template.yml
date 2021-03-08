@@ -1,0 +1,13 @@
+description: Example document.
+
+parameters:
+    Name:
+      type: String
+      default: user
+
+mainSteps:
+  - action: aws:runShellScript
+    inputs:
+      runCommand: !IncludeScript ./script.sh
+    name: LinuxGreetings
+    precondition: !LinuxOnly

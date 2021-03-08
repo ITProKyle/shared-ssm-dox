@@ -29,10 +29,14 @@ cryptography = "<3.4"  # breaking change requiring rust
 flake8 = "^3.8.4"
 flake8-docstrings = "^1.5.0"
 isort = "^5.7.0"
+mock = "^4.0.3"
 pep8-naming = "^0.11.1"
 pre-commit = "^2.10.1"
 pydocstyle = "^5.1.1"
 pylint = "^2.7.2"
+pytest = "^6.2.2"
+pytest-cov = "^2.11.1"
+pytest-mock = "^3.5.1"
 runway = "^1.18.3"
 
 [tool.poetry.scripts]
@@ -61,6 +65,22 @@ exclude = '''
 include = '\.pyi?$'
 line-length = 88
 target-version = ['py38']
+
+
+[tool.coverage.report]
+exclude_lines = [
+    "cov: ignore",  # standard exclude comment
+    "if TYPE_CHECKING:",  # excluded blocks
+    "if __name__ == .__main__.:",
+    "raise AssertionError",  # defensive exceptions
+    "raise NotImplimentedError",
+    "if sys.version_info",
+    "@overload",
+]
+omit = [
+    "**/type_defs.py",
+    "**/type_defs/*.py"
+]
 
 
 [tool.isort]
@@ -177,3 +197,23 @@ disable = [
 msg-template="{path}:{line}:{column}: {msg_id}: {msg} ({symbol})"
 output-format="colorized"
 score="yes"
+
+
+[tool.pytest.ini_options]
+addopts = [
+    "--color=auto",
+    "--code-highlight=yes",
+    "--cov-config=pyproject.toml",
+    "--no-cov-on-fail",
+    "--strict-markers",
+]
+filterwarnings = ["ignore::DeprecationWarning", "ignore::FutureWarning:"]
+minversion = 6.0
+mock_use_standalone_module = true
+python_classes = ["Test*"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+testpaths = ["tests"]
+markers = [
+    "wip: isolate tests currently being worked on."
+]

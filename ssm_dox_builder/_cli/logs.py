@@ -32,7 +32,7 @@ LOG_LEVEL_STYLES = {
 }
 
 
-class LogSettings:
+class LogSettings:  # cov: ignore
     """CLI log settings."""
 
     ENV = {
@@ -143,7 +143,7 @@ def setup_logging(
     )
     LOGGER.debug("runway log level: %s", LOGGER.getEffectiveLevel())
 
-    if settings.debug == 2:
+    if settings.debug == 2:  # cov: ignore
         coloredlogs.install(  # type: ignore
             settings.log_level,
             logger=logging.getLogger("botocore"),

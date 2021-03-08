@@ -6,7 +6,7 @@ from typing import Optional
 import boto3
 import click
 
-from ...constants import SHARED_SSM_DOCS
+from ...constants import DEFAULT_S3_BUCKET, SHARED_SSM_DOCS
 from ...finder import Finder
 from .utils import click_directory
 
@@ -14,7 +14,7 @@ LOGGER = logging.getLogger(__name__)
 
 
 @click.command("publish", short_help="publish documents")
-@click.argument("bucket", default="shared-ssm-dox-dev", required=True)
+@click.argument("bucket", default=DEFAULT_S3_BUCKET, required=True)
 @click.argument("documents_path", callback=click_directory, default=SHARED_SSM_DOCS)
 @click.option("-p", "--prefix", default="dev", help="prefix to append to S3 Object key")
 @click.option("--profile", default=None, help="AWS profile name")

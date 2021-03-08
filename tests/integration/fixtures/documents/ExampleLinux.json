@@ -1,0 +1,29 @@
+{
+    "schemaVersion": "2.2",
+    "description": "Example document.",
+    "parameters": {
+        "Name": {
+            "type": "String",
+            "default": "user"
+        }
+    },
+    "mainSteps": [
+        {
+            "action": "aws:runShellScript",
+            "inputs": {
+                "runCommand": [
+                    "#!/bin/bash -e",
+                    "NAME=\"{{ Name }}\"",
+                    "echo \"Greetings ${NAME}\""
+                ]
+            },
+            "name": "LinuxGreetings",
+            "precondition": {
+                "StringEquals": [
+                    "platformType",
+                    "Linux"
+                ]
+            }
+        }
+    ]
+}

@@ -1,3 +1,5 @@
+.PHONY: test
+
 REPORTS := $(if $(REPORTS),yes,$(if $(CI),yes,no))
 SHELL := /bin/bash
 
@@ -79,7 +81,7 @@ lint-powershell: ## run PowerShell PSScriptAnalyzer
 
 lint-pylint: ## run pylint
 	@echo "Running pylint..."
-	@poetry run pylint --rcfile=pyproject.toml ssm_dox_builder --reports=${REPORTS}
+	@poetry run pylint --rcfile=pyproject.toml ssm_dox_builder tests --reports=${REPORTS}
 	@echo ""
 
 lint-pyright: ## run pyright
@@ -107,8 +109,11 @@ run-pre-commit:
 
 setup: setup-poetry setup-pre-commit  ## setup development environment
 
-setup-poetry:  ## setup poetry environment
+setup-poetry: ## setup poetry environment
 	@poetry install
 
-setup-pre-commit:  ## setup pre-commit
+setup-pre-commit: ## setup pre-commit
 	@poetry run pre-commit install
+
+test: ## run tests
+	@poetry run pytest --cov=ssm_dox_builder --cov-report term-missing:skip-covered

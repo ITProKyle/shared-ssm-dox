@@ -14,7 +14,7 @@ class SsmDocumentDataModel(BaseModel):
     """AWS SSM Document data model."""
 
     schemaVersion: str = "2.2"
-    description: str
+    description: Optional[str] = None
     parameters: Optional[Dict[str, SsmDocumentParameterDataModel]] = None
     mainSteps: List[AnyMainStep]
 
@@ -24,5 +24,5 @@ class SsmDocumentDataModel(BaseModel):
         """Validate the schema version is supported."""
         split_version = tuple(int(i) for i in v.split("."))
         if split_version < (2, 2):
-            raise NotImplementedError("this tool only supports schemaVersion >= 2.2")
+            raise ValueError("this tool only supports schemaVersion >= 2.2")
         return v

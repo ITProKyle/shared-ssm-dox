@@ -18,6 +18,6 @@ class SsmDocumentMainStep(BaseModel):
     """AWS SSM Document mainStep base data model."""
 
     action: str
-    inputs: SsmDocumentMainStepInputs
+    inputs: Optional[SsmDocumentMainStepInputs] = None
     name: str
-    precondition: Dict[str, List[str]]
+    precondition: Optional[Dict[str, List[str]]] = None
