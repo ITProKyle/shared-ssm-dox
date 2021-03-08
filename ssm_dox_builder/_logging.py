@@ -4,7 +4,7 @@ from enum import IntEnum
 from typing import Any, Text, Union
 
 
-class LogLevels(IntEnum):
+class LogLevels(IntEnum):  # cov: ignore
     """All available log levels."""
 
     NOTSET = 0
@@ -23,7 +23,7 @@ class LogLevels(IntEnum):
         return value in cls._value2member_map_  # pylint: disable=no-member
 
 
-class CustomLogger(logging.Logger):
+class CustomLogger(logging.Logger):  # cov: ignore
     """Extend built-in logger with additional levels."""
 
     def __init__(self, name: str, level: Union[int, Text] = logging.NOTSET) -> None:

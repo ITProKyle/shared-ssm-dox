@@ -8,6 +8,6 @@ logging.setLoggerClass(CustomLogger)
 
 try:
     __version__ = version("shared-ssm-dox")
-except PackageNotFoundError:
+except PackageNotFoundError:  # cov: ignore
     # package not installed
     __version__ = "0.0.0"

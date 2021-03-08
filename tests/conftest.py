@@ -30,6 +30,12 @@ def pytest_addoption(parser):  # type: ignore
 
 
 @pytest.fixture(scope="session")
+def integration_tests_dir(tests_dir: Path) -> Path:
+    """Return a path object to the integration tests directory."""
+    return tests_dir / "integration"
+
+
+@pytest.fixture(scope="session")
 def root_dir() -> Path:
     """Return a path object to the root directory."""
     return Path(__file__).parent.parent
