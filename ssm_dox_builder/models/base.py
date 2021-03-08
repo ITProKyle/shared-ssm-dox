@@ -5,6 +5,12 @@ from pydantic import BaseModel as _BaseModel
 class BaseModel(_BaseModel):
     """Custom base class for data models."""
 
+    def __bool__(self) -> bool:
+        """Calculate the boolean value of the object."""
+        return bool(
+            self.dict(exclude_defaults=True, exclude_none=True, exclude_unset=True)
+        )
+
     def __eq__(self, other: object) -> bool:
         """Calculate equality (==)."""
         if isinstance(other, BaseModel):
