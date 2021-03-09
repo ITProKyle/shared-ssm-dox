@@ -3,10 +3,10 @@
     "description": "Reports back diagnostic information related to cpu usage.",
     "parameters": {
         "ResultCount": {
+            "type": "String",
             "allowedPattern": "^[0-9]{1,2}$",
             "default": "5",
-            "description": "The number of results to return for top processes.",
-            "type": "String"
+            "description": "The number of results to return for top processes."
         }
     },
     "mainSteps": [

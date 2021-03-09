@@ -1,15 +1,5 @@
 # Dox
 
-This directory contains Dox. A Dox is a directory containing source files that will be built into an SSM Document.
+## Resources
 
-Each Dox directory is named after the SSM Document that will be produced from it.
-The directory contains a YAML template file (`template.[yaml|yml]`) that is used to build the SSM Document.
-This file uses YAML tags specific to this tool to build SSM Documents by including external files.
-
-## Custom YAML Tags
-
-| Tag              | Description                                                          | Usage                        |
-|------------------|----------------------------------------------------------------------|------------------------------|
-| `!IncludeScript` | include the contents of a file, splitting each line into a list item | `!IncludeScript ./file.sh`   |
-| `!LinuxOnly`     | main step precondition that limits it to only run on Linux systems   | `precondition: !LinuxOnly`   |
-| `!WindowsOnly`   | main step precondition that limits it to only run on Windows systems | `precondition: !WindowsOnly` |
+- [YAML Tags](https://ssm-dox.readthedocs.io/page/dox/yaml.html)

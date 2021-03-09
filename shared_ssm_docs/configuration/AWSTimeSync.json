@@ -3,15 +3,15 @@
     "description": "Installs and configures AWS Time Sync with time client of choice. Syncs to server 169.254.169.123 per AWS recommendations.",
     "parameters": {
         "PreferredTimeClient": {
+            "type": "String",
             "allowedPattern": "^ntp$|^chrony$",
             "default": "chrony",
-            "description": "(Linux only) Choose \"chrony\" or \"ntp\" to be configured for time sync. (chrony|ntp)",
-            "type": "String"
+            "description": "(Linux only) Choose \"chrony\" or \"ntp\" to be configured for time sync. (chrony|ntp)"
         },
         "WindowsConfigureIfDomainMember": {
+            "type": "String",
             "default": "False",
-            "description": "(Windows only) Configure even if Windows instance is joined to a domain? (True|False)",
-            "type": "String"
+            "description": "(Windows only) Configure even if Windows instance is joined to a domain? (True|False)"
         }
     },
     "mainSteps": [
