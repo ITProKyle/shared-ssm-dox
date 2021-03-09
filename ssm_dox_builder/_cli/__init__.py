@@ -1,1 +1,0 @@
-"""SSM Document builder CLI."""
