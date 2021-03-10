@@ -1,0 +1,46 @@
+schemaVersion: 2.2
+description: Scans the affected drive and reports back diagnostic information.
+
+parameters:
+  Depth:
+    type: String
+    description: (Deprecated) This parameter is no longer used, but has been retained for backwards compatibility.
+    default: 2
+    allowedPattern: "^[0-9]{1,2}$"
+  DriveLetter:
+    type: String
+    description: The drive letter to scan. Ignored for Linux instances.
+    default: C
+    allowedPattern: "^[a-zA-Z]$"
+  MountPoint:
+    type: String
+    description: The mount point to scan. Ignored for Windows instances.
+    default: /
+    allowedPattern: "^/([^/]+(/)?)*$"
+  PerformRemediation:
+    type: String
+    description: >-
+      Controls whether preapproved disk cleanup activities are performed on Windows instances.
+      Set to False to only provide diagnostic information. Ignored on Linux instances.
+    default: "True"
+    allowedValues:
+      - "True"
+      - "False"
+  ResultCount:
+    type: String
+    description: The number of results to return for large files and directories.
+    default: 10
+    allowedPattern: "^[0-9]{1,2}$"
+
+mainSteps:
+  - action: aws:runShellScript
+    name: LinuxDiskScan
+    precondition: !LinuxOnly
+    inputs:
+      runCommand: !IncludeScript ./disk_scan.sh
+  - action: aws:runPowerShellScript
+    name: WindowsDiskScan
+    precondition: !WindowsOnly
+    inputs:
+      runCommand: !IncludeScript ./disk_scan.ps1
+      timeoutSeconds: 7200
