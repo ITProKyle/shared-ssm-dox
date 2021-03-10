@@ -46,14 +46,14 @@ dev = ["coverage (>=5.3,<6.0)", "flake8 (>=3.8.4,<3.9.0)", "tox (>=3.20.1,<3.21.
 
 [[package]]
 name = "awscli"
-version = "1.19.23"
+version = "1.19.24"
 description = "Universal Command Line Environment for AWS."
 category = "dev"
 optional = false
 python-versions = ">= 2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*"
 
 [package.dependencies]
-botocore = "1.20.23"
+botocore = "1.20.24"
 colorama = ">=0.2.5,<0.4.4"
 docutils = ">=0.10,<0.16"
 PyYAML = ">=3.10,<5.5"
@@ -62,20 +62,20 @@ s3transfer = ">=0.3.0,<0.4.0"
 
 [[package]]
 name = "boto3"
-version = "1.17.23"
+version = "1.17.24"
 description = "The AWS SDK for Python"
 category = "dev"
 optional = false
 python-versions = ">= 2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*"
 
 [package.dependencies]
-botocore = ">=1.20.23,<1.21.0"
+botocore = ">=1.20.24,<1.21.0"
 jmespath = ">=0.7.1,<1.0.0"
 s3transfer = ">=0.3.0,<0.4.0"
 
 [[package]]
 name = "botocore"
-version = "1.20.23"
+version = "1.20.24"
 description = "Low-level, data-driven core of boto 3."
 category = "dev"
 optional = false
@@ -468,7 +468,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
 [[package]]
 name = "pre-commit"
-version = "2.11.0"
+version = "2.11.1"
 description = "A framework for managing and maintaining multi-language pre-commit hooks."
 category = "dev"
 optional = false
@@ -710,7 +710,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 
 [[package]]
 name = "ssm-dox"
-version = "0.1.0"
+version = "0.1.1"
 description = "CLI tool for building and publishing SSM Documents."
 category = "dev"
 optional = false
@@ -836,7 +836,7 @@ testing = ["pathlib2", "contextlib2", "unittest2"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "17e3ae90417d72b1a07ac3992a78135e9657a6b8943ec95e77f786e86a7dce79"
+content-hash = "8ad555dac7127e58d3abf97372432c7bfcd2dc3d09c2d6ef79df4d35a6d043b2"
 
 [metadata.files]
 appdirs = [
@@ -856,16 +856,16 @@ aws-sam-translator = [
     {file = "aws_sam_translator-1.34.0-py3-none-any.whl", hash = "sha256:1cfc8ba13c43e8c425fdcd6c246fdd90899a3ed89310d84a72ccdf082e4146d7"},
 ]
 awscli = [
-    {file = "awscli-1.19.23-py2.py3-none-any.whl", hash = "sha256:426e2eb8412b59e677ac28603cb6a038bea50ae8fab60ee9edf3756b28d4f419"},
-    {file = "awscli-1.19.23.tar.gz", hash = "sha256:191c07061bf227775437bf0b6e6209e0db50affcd8d5a37ba9fe5d87b6b80585"},
+    {file = "awscli-1.19.24-py2.py3-none-any.whl", hash = "sha256:f81687ca23b02d2180ae32dd8a1405b5b7f9aa2d8047263ef6e6514903f25960"},
+    {file = "awscli-1.19.24.tar.gz", hash = "sha256:781f3555d141d3d42e6a000d699c50b8e7bc374027aa02f8688bb91c3ad88362"},
 ]
 boto3 = [
-    {file = "boto3-1.17.23-py2.py3-none-any.whl", hash = "sha256:1ca39de26205439832fa740fcc200de85f107b615dae445f869a16b76672e663"},
-    {file = "boto3-1.17.23.tar.gz", hash = "sha256:d6716f6701aae771f6ff2386a1d641855a99a9fedd64bd25476b83bacdd50c94"},
+    {file = "boto3-1.17.24-py2.py3-none-any.whl", hash = "sha256:7d1f30022f7e28e0907ea521dc84b04506f83cc6afc7c63225153bf3a35cf1b6"},
+    {file = "boto3-1.17.24.tar.gz", hash = "sha256:bf4a321da7dbe0c5a20380ff9f6a8a4e2e135e72a40348890122a197368b4421"},
 ]
 botocore = [
-    {file = "botocore-1.20.23-py2.py3-none-any.whl", hash = "sha256:d5ea913331e93cecde25773841397c5d2abbc04f38b1c96c636444e8bb3478f8"},
-    {file = "botocore-1.20.23.tar.gz", hash = "sha256:f3ae5cae250c3fb200d33abacbee3f0c6513fc6f1d17a851b04a3998de68c829"},
+    {file = "botocore-1.20.24-py2.py3-none-any.whl", hash = "sha256:1aff3499bb6576e5836d5a8ed3e984c99bf04fb462d9f8fffa454131c1bc40cd"},
+    {file = "botocore-1.20.24.tar.gz", hash = "sha256:9398bcd9491442aa559a7c111b96004bb06af612e53baa7165b0a646bb43534d"},
 ]
 certifi = [
     {file = "certifi-2020.12.5-py2.py3-none-any.whl", hash = "sha256:719a74fb9e33b9bd44cc7f3a8d94bc35e4049deebe19ba7d8e108280cfd59830"},
@@ -1084,8 +1084,8 @@ pathspec = [
     {file = "pathspec-0.8.1.tar.gz", hash = "sha256:86379d6b86d75816baba717e64b1a3a3469deb93bb76d613c9ce79edc5cb68fd"},
 ]
 pre-commit = [
-    {file = "pre_commit-2.11.0-py2.py3-none-any.whl", hash = "sha256:c4853e29c24b27d81359357fae891e00bc83e6a0575c93d815e0e8077bd53b3b"},
-    {file = "pre_commit-2.11.0.tar.gz", hash = "sha256:06f8cb95e29e56788fb5dc98d7ca7a714969dc96633e1ba654ccd5953b64c195"},
+    {file = "pre_commit-2.11.1-py2.py3-none-any.whl", hash = "sha256:94c82f1bf5899d56edb1d926732f4e75a7df29a0c8c092559c77420c9d62428b"},
+    {file = "pre_commit-2.11.1.tar.gz", hash = "sha256:de55c5c72ce80d79106e48beb1b54104d16495ce7f95b0c7b13d4784193a00af"},
 ]
 pyasn1 = [
     {file = "pyasn1-0.4.8-py2.4.egg", hash = "sha256:fec3e9d8e36808a28efb59b489e4528c10ad0f480e57dcc32b4de5c9d8c9fdf3"},
@@ -1215,8 +1215,8 @@ smmap = [
     {file = "smmap-3.0.5.tar.gz", hash = "sha256:84c2751ef3072d4f6b2785ec7ee40244c6f45eb934d9e543e2c51f1bd3d54c50"},
 ]
 ssm-dox = [
-    {file = "ssm-dox-0.1.0.tar.gz", hash = "sha256:0327645940bed00417fdc9b984367be0f9fc802cd8fce8e21b37a548104a1211"},
-    {file = "ssm_dox-0.1.0-py3-none-any.whl", hash = "sha256:1f5708606b98a9d1b091d165623584864019a2e7a51dd6054ea1fe093f3453a7"},
+    {file = "ssm-dox-0.1.1.tar.gz", hash = "sha256:d978bdd2fa22f3ae56aee7924fd409b8a3865c5e38d921d322345c0ae21785f6"},
+    {file = "ssm_dox-0.1.1-py3-none-any.whl", hash = "sha256:bdced01aee0755211c3ac42bb2b1d568e289a7bff78678c95ba6b4b9a56da237"},
 ]
 toml = [
     {file = "toml-0.10.2-py2.py3-none-any.whl", hash = "sha256:806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b"},

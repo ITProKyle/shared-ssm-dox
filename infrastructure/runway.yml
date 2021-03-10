@@ -18,8 +18,6 @@ variables:
   account_id:
     dev: "433204113401"
   bucket_name:
-    common:
-      shared-ssm-dox
-    dev:
-      shared-ssm-dox-dev
+    common: shared-ssm-dox
+    dev: shared-ssm-dox-dev
   app: shared-ssm-dox

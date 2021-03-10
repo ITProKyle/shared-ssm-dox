@@ -4,8 +4,8 @@
     "parameters": {
         "Packages": {
             "type": "String",
-            "default": "{}",
-            "description": "Space separated list of packages to be installed/"
+            "default": "",
+            "description": "Space separated list of packages to be installed"
         }
     },
     "mainSteps": [

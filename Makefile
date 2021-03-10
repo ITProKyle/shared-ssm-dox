@@ -1,4 +1,4 @@
-.PHONY: tests
+.PHONY: dox tests
 
 SHELL := /bin/bash
 
@@ -39,6 +39,13 @@ dox-build: ## build SSM Documents
 
 dox-check: ## check SSM Documents for drift
 	@poetry run ssm-dox check ./dox ./shared_ssm_docs
+
+dox-publish: dox-check ## publish dev SSM documents
+	@poetry run ssm-dox publish shared-ssm-dox-dev shared_ssm_docs
+
+dox-publish-latest: dox-check dox-publish ## publish latest SSM documents
+	@poetry run ssm-dox publish shared-ssm-dox-dev shared_ssm_docs \
+		--prefix latest
 
 lint-cfn:  ## run cfn-lint
 	@echo "Running cfn-lint..."
