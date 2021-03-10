@@ -1,0 +1,22 @@
+schemaVersion: 2.2
+description: Reports back diagnostic information related to memory usage.
+
+parameters:
+  ResultCount:
+    type: String
+    description: The number of results to return for top processes.
+    default: 8
+    allowedPattern: "^[0-9]{1,2}$"
+
+mainSteps:
+  - action: aws:runShellScript
+    name: LinuxMemoryScan
+    precondition: !LinuxOnly
+    inputs:
+      runCommand: !IncludeScript ./memory_scan.sh
+  - action: aws:runPowerShellScript
+    name: WindowsMemoryScan
+    precondition: !WindowsOnly
+    inputs:
+      runCommand: !IncludeScript ./memory_scan.ps1
+      timeoutSeconds: 7200
