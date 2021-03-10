@@ -54,4 +54,4 @@ ps -eo user,%cpu,%mem,rsz,args | sort -rnk4 | awk 'BEGIN {printf "%8s\t%6s\t%6s\
 
 # Output last {{ ResultCount }} SAR entries
 echo ""
-which sar >/dev/null 2>/dev/null && sar_output || echo 'no sysstat available'
+command -v sar >/dev/null 2>/dev/null && sar_output || echo 'no sysstat available'
