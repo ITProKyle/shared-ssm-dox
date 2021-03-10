@@ -4,7 +4,7 @@ description: Install a list of packages on an OS.
 parameters:
   Packages:
     type: String
-    description: Space separated list of packages to be installed/
+    description: Space separated list of packages to be installed
     default: ""
 
 mainSteps:

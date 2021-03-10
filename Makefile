@@ -1,4 +1,4 @@
-.PHONY: tests
+.PHONY: dox tests
 
 SHELL := /bin/bash
 
@@ -35,10 +35,21 @@ destroy: ## destroy infrastructure
 	popd
 
 dox-build: ## build SSM Documents
+	@echo "building dox..."
 	@poetry run ssm-dox build ./dox --output ./shared_ssm_docs
 
 dox-check: ## check SSM Documents for drift
+	@echo "checking docs..."
 	@poetry run ssm-dox check ./dox ./shared_ssm_docs
+
+dox-publish: dox-check ## publish dev SSM documents
+	@echo "publishing docs to 'dev'..."
+	@poetry run ssm-dox publish shared-ssm-dox-dev shared_ssm_docs
+
+dox-publish-latest: dox-check dox-publish ## publish latest SSM documents
+	@echo "publishing docs to 'latest'..."
+	@poetry run ssm-dox publish shared-ssm-dox-dev shared_ssm_docs \
+		--prefix latest
 
 lint-cfn:  ## run cfn-lint
 	@echo "Running cfn-lint..."

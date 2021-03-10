@@ -13,7 +13,7 @@ awscli = "^1.19.15"  # defined to improve runway dependency resolution speed
 cryptography = "<3.4"  # breaking change requiring rust
 pre-commit = "^2.11.0"
 runway = "^1.18.3"
-ssm-dox = "^0.1.0"
+ssm-dox = "^0.1.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
