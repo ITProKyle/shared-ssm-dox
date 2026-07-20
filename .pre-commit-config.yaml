@@ -5,7 +5,7 @@ minimum_pre_commit_version: "2.10.0"
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v3.4.0
+    rev: v6.0.0
     hooks:
       - id: check-merge-conflict
       - id: trailing-whitespace
@@ -15,7 +15,7 @@ repos:
         args:
           - "--unsafe"  # needed for parsing CFN
   - repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: v0.26.0
+    rev: v0.49.1
     hooks:
       - id: markdownlint
   - repo: local
